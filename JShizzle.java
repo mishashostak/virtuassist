@@ -1,12 +1,20 @@
-/*
-This class is the brains of the Virtual Agent
-*/
+/**
+ * This class defines the intelligence of the virtual agent
+ * 
+ * @author Misha Shostak
+ * 
+ * @version November 10, 2022
+ */
 public class JShizzle extends VirtualAgent {
     private String userName = "User";
     private int userAge;
 
-
-    //parameterized constructor
+    /**
+     * Parameterized constructor to initialize the chatBotName into hostValues, and userName into userValues of a chatBot
+     * 
+     * @param chatBotName The initial String value for the "name" key in the hostValues map
+     * @param userName The initial String value for the "name" key in the userValues map
+     */
     public JShizzle(String name) {
         super (name);
     }
@@ -44,7 +52,7 @@ public class JShizzle extends VirtualAgent {
     public String respondToUserQuery(String inp) {
         inp = toTitleCase(inp);
         if (inp.contains("Hi")|inp.contains("Hello")|inp.contains("Hey")|inp.contains("Yo")|inp.contains("Hello")) {
-            return "Hello, how may I help you?";
+            return "Hey there, I'm JShizzle ";
         }
         else if (inp.contains("What Is")){
             if (inp.contains("Your Age")){
@@ -65,5 +73,14 @@ public class JShizzle extends VirtualAgent {
         else {
             return "I don't know what you may mean by that";
         }
+    }
+
+    /**
+     * This is a standard toString() method.  
+     * 
+     * @return String - The String representation of the current object.
+     */
+    public String toString() {
+        return super.toString();
     }
 }
