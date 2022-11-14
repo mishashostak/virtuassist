@@ -13,7 +13,6 @@ public class AgentTest {
      * @param args - Command line arguments
      */
     public static void main(String[] args) {
-        JShizzle j = new JShizzle();
-        j.convCon();
+        new JShizzle();
     }
 }

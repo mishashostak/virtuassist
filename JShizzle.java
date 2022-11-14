@@ -1,4 +1,5 @@
 import java.util.*;
+
 /**
  * This class defines the basic virtual agent portion of the virtual agent
  * 
@@ -12,6 +13,7 @@ public class JShizzle extends VirtualAgent {
 
     /**
      * Parameterized constructor to initialize the convProceed instance variable, userName and the Virtual Agent name
+     * and calls the convCon method to begin the virtual agent
      * 
      * @param name The initial String value of the Virtual Agent name
      * @param userName The initial String value of the userName instance variable
@@ -21,10 +23,11 @@ public class JShizzle extends VirtualAgent {
         super (name);
         setConvProceed(bool);
         setUserName(userName);
+        convCon();
     }
 
     /**
-     * No-argument constructor which calls the parameterized constructor to intialize the Virtual Agent 
+     * Non-parameterized constructor which calls the parameterized constructor to intialize the Virtual Agent 
      * The initial Virtual Agent name is "J Shizzle"
      * The initial userName is " "
      * The initial convProceed boolean value is false
@@ -76,10 +79,11 @@ public class JShizzle extends VirtualAgent {
      * Accepts input from the user and calls the respondToUserQuery
      */
     public void convCon() {
+        String text;
         try (Scanner input = new Scanner(System.in)) {
             while(!getConvProceed()) {
                 System.out.println("Greet to Begin.");
-                String text = input.nextLine();
+                text = input.nextLine();
                 String response = respondToUserQuery(text);
                 if(response.equals("bye")) {
                     System.exit(0);
@@ -89,19 +93,21 @@ public class JShizzle extends VirtualAgent {
             }
             while(getUserName().equals(" ")) {
                 System.out.println("Hello! May I have your name?");
-                String text = input.nextLine();
+                text = input.nextLine();
                 String response = respondToUserQuery(text);
                 if(response.equals("bye")) {
                     System.exit(0);
+                } else if (response.contains("I'm J Shizzle")) {
+                    System.out.println(response);
                 }
             }
             System.out.println("So, how may I help? (\"cmnds\" might help you decide)\n");
             while(true) {
                 System.out.print(getUserName() + ": ");
-                String inp = input.nextLine();
-                String response = respondToUserQuery(inp);
+                text = input.nextLine();
+                String response = respondToUserQuery(text);
                 if(response.equals("bye")) {
-                    break;
+                    System.exit(0);
                 } else {
                     System.out.print(getName() + ": ");
                     System.out.println(response);
@@ -119,19 +125,20 @@ public class JShizzle extends VirtualAgent {
      */
     @Override
     public String respondToUserQuery(String inp) {
-        inp = toTitleCase(inp);
+        inp = toTitleCase(inp).trim();
         while(!getConvProceed()|getUserName().equals(" ")) {
             if (inp.contains("Hi")|inp.contains("Hello")|inp.contains("Hey")|inp.contains("Yo")|inp.contains("Top Of The Mornin") && !getConvProceed()) {
                 return "yay";
-            } else if (inp.contains("Bye")|inp.contains("No")){
+            } else if (inp.equals("Bye")|inp.equals("No")){
                 return "bye";
             } else if (getConvProceed()){
                 setUserName(inp);
-                return "Hey there " + getUserName() + ", I'm J Shizzle, you'll find I'm pretty good at talking about colours and not much else";
+                return "\nHey there " + getUserName() + ", I'm J Shizzle, you'll find I'm pretty good at talking about colours and not much else";
             } else {
                 return " ";
             }
         }
+        /* Full virtual agent is unlocked once user has made necessary steps */
         Calcer c = new Calcer();
         if (inp.contains("What Is")){
             if (inp.contains("Your Age")){
@@ -151,12 +158,18 @@ public class JShizzle extends VirtualAgent {
             setName(inp.substring(inp.lastIndexOf(" ")));
             return "Ok, my name is now " + getName();
         }
+        else if (inp.contains("My Name Is")){
+            setUserName(inp.substring(inp.lastIndexOf(" ")));
+            return "Ok, your name is now " + getUserName();
+        }
         else if (inp.contains("Bye")|inp.contains("No")){
             return "bye";
         }
+        /* "cmnds" string that contains a list of all of the virtual agent's functions/responses */
         else if (inp.contains("Cmnds")){
-            return "\"<common colour>\": returns the rgb values of the colour\n\"blend\": shows the blend of the 2 colours you input\n" 
-            +"\"your name is <name>\": changes JShizzle's name\n\"bye\" or \"no\": makes the virtual assisstant program stop\n";
+            return "\n\"<common colour name>\": returns the rgb values of the input colour\n\"blend\": shows the blend of the 2 colours you input\n" 
+            +"\"your name is <name>\": changes JShizzle's name\n\"bye\" or \"no\": makes the virtual assisstant program stop\n"
+            +"\"my name is <name>\": changes user's name\n";
         }
         else if (inp.equals("Black")) return c.colStrings[0];
         else if (inp.equals("White")) return c.colStrings[1];
@@ -176,7 +189,7 @@ public class JShizzle extends VirtualAgent {
         else if (inp.equals("Navy")) return c.colStrings[15];
         else if (inp.equals("Blend")){
             c.blendInput();
-            return "Anything else?";
+            return "Anything else? (\"cmnds\" might help you decide)\n";
         }
         else {
             return "I'm not sure what to say to that";
