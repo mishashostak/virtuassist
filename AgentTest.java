@@ -1,24 +1,19 @@
-import java.util.*;
-
+/**
+ * This class defines the behaviour of the AgentTest class to test the virtual agent
+ * 
+ * @author Misha Shostak
+ * 
+ * @version November 13, 2022
+ */
 public class AgentTest {
     
-    // Testing of the Virtual Agent
+    /**
+     * Main method to test the virtual agent
+     * 
+     * @param args - Command line arguments
+     */
     public static void main(String[] args) {
-        JShizzle J = new JShizzle("J Shizzle");
-        try (Scanner input = new Scanner(System.in)) {
-            while(true) {
-                System.out.print(J.getUserName() + ": ");
-                String inp = input.nextLine();
-                String response = J.respondToUserQuery(inp);
-                if(response.equals("bye")) {
-                    break;
-                } else if (response.equals("")) {
-                    continue;
-                } else {
-                    System.out.print(J.getName() + ": ");
-                    System.out.println(response);
-                }
-            }
-        }
+        JShizzle j = new JShizzle();
+        j.convCon();
     }
 }

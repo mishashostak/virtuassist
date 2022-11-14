@@ -1,9 +1,9 @@
 /**
  * This abstract class defines the basic attributes and behaviours that all Virtual Agents should have.
  * 
- * @author Mr. Rao
+ * @author Misha Shostak
  * 
- * @version October 27, 2022
+ * @version November 13, 2022
  */
 public abstract class VirtualAgent {
 
