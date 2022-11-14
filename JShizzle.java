@@ -78,7 +78,7 @@ public class JShizzle extends VirtualAgent {
     public void convCon() {
         try (Scanner input = new Scanner(System.in)) {
             while(!getConvProceed()) {
-                System.out.print("Greet to Begin.\n");
+                System.out.println("Greet to Begin.");
                 String text = input.nextLine();
                 String response = respondToUserQuery(text);
                 if(response.equals("bye")) {
@@ -87,9 +87,8 @@ public class JShizzle extends VirtualAgent {
                     setConvProceed(true);
                 }
             }
-            input.next();
             while(getUserName().equals(" ")) {
-                System.out.print("Hello! May I have your name?");
+                System.out.println("Hello! May I have your name?");
                 String text = input.nextLine();
                 String response = respondToUserQuery(text);
                 if(response.equals("bye")) {
@@ -156,7 +155,8 @@ public class JShizzle extends VirtualAgent {
             return "bye";
         }
         else if (inp.contains("Cmnds")){
-            return "\"<colour>\": returns the rgb values of the colour\n\"blend\": shows the blend of the 2 colours you input";
+            return "\"<common colour>\": returns the rgb values of the colour\n\"blend\": shows the blend of the 2 colours you input\n" 
+            +"\"your name is <name>\": changes JShizzle's name\n\"bye\" or \"no\": makes the virtual assisstant program stop\n";
         }
         else if (inp.equals("Black")) return c.colStrings[0];
         else if (inp.equals("White")) return c.colStrings[1];

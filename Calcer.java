@@ -30,6 +30,7 @@ public class Calcer{
      */
     public void blendInput() {
         try (Scanner input = new Scanner(System.in)) {
+            ColorChoice cc = new ColorChoice();
             System.out.println("Do you have the name of the FIRST colour or would you like to pick it?\n\"name\" if you'd like to input the name of a colour\n\"pick\" if you'd like to pick a colour");
             while(true){
                 String namOrPick1 = input.nextLine().toLowerCase();
@@ -39,7 +40,8 @@ public class Calcer{
                     break;
                 }
                 if (namOrPick1.equals("pick")){
-                    blendc0 = JColorChooser.showDialog(null, "Pick the first Colour", Color.BLACK);
+                    SwingUtilities.invokeLater(() -> new ColorChoice().setVisible(true));
+                    blendc1 = cc.getColorChoi();
                     break;
                 }
             }
@@ -52,7 +54,8 @@ public class Calcer{
                     break;
                 }
                 if (namOrPick2.equals("pick")){
-                    blendc1 = JColorChooser.showDialog(null, "Pick the second Colour", Color.BLACK);
+                    SwingUtilities.invokeLater(() -> new ColorChoice().setVisible(true));
+                    blendc1 = cc.getColorChoi();
                     break;
                 }
             }
