@@ -103,7 +103,8 @@ public class JShizzle extends VirtualAgent {
                     System.out.println(response);
                 }
             }
-            System.out.println("So, how may I help? (\"cmnds\" might help you decide)\n");
+            System.out.print(getName() + ": ");
+            System.out.println("So, how may I help? (\"cmnds\" might help you decide)");
             while(true) {
                 System.out.print(getUserName() + ": ");
                 text = input.nextLine();
@@ -136,13 +137,12 @@ public class JShizzle extends VirtualAgent {
                 return "bye";
             } else if (getConvProceed()){
                 setUserName(inp);
-                return "\nHey there " + getUserName() + ", I'm J Shizzle, you'll find I'm pretty good at talking about colours and not much else";
+                return "\nHey there " + getUserName() + ", I'm J Shizzle, you'll find I'm pretty good at talking about colours and not much else\n";
             } else {
                 return " ";
             }
         }
         /* Full virtual agent is unlocked once user has made necessary steps */
-        Calcer c = new Calcer();
         if (inp.contains("What Is")){
             if (inp.contains("Your Age")){
                 return "My age is none of your concern, I talk about colours, how has this not been established";
@@ -174,24 +174,24 @@ public class JShizzle extends VirtualAgent {
             +"\"your name is <name>\": changes JShizzle's name\n\"bye\" or \"no\": makes the virtual assisstant program stop\n"
             +"\"my name is <name>\": changes user's name\n";
         }
-        else if (inp.equals("Black")) return c.colStrings[0];
-        else if (inp.equals("White")) return c.colStrings[1];
-        else if (inp.equals("Red")) return c.colStrings[2];
-        else if (inp.equals("Lime")) return c.colStrings[3];
-        else if (inp.equals("Blue")) return c.colStrings[4];
-        else if (inp.equals("Yellow")) return c.colStrings[5];
-        else if (inp.equals("Cyan")) return c.colStrings[6];
-        else if (inp.equals("Magenta")|inp.equals("Pink")) return c.colStrings[7];
-        else if (inp.equals("Silver")) return c.colStrings[8];
-        else if (inp.equals("Gray")|inp.equals("Grey")) return c.colStrings[9];
-        else if (inp.equals("Maroon")) return c.colStrings[10];
-        else if (inp.equals("Olive")) return c.colStrings[11];
-        else if (inp.equals("Green")) return c.colStrings[12];
-        else if (inp.equals("Purple")) return c.colStrings[13];
-        else if (inp.equals("Teal")) return c.colStrings[14];
-        else if (inp.equals("Navy")) return c.colStrings[15];
+        else if (inp.equals("Black")) return Calcer.COLSTR[0];
+        else if (inp.equals("White")) return Calcer.COLSTR[1];
+        else if (inp.equals("Red")) return Calcer.COLSTR[2];
+        else if (inp.equals("Lime")) return Calcer.COLSTR[3];
+        else if (inp.equals("Blue")) return Calcer.COLSTR[4];
+        else if (inp.equals("Yellow")) return Calcer.COLSTR[5];
+        else if (inp.equals("Cyan")) return Calcer.COLSTR[6];
+        else if (inp.equals("Magenta")|inp.equals("Pink")) return Calcer.COLSTR[7];
+        else if (inp.equals("Silver")) return Calcer.COLSTR[8];
+        else if (inp.equals("Gray")|inp.equals("Grey")) return Calcer.COLSTR[9];
+        else if (inp.equals("Maroon")) return Calcer.COLSTR[10];
+        else if (inp.equals("Olive")) return Calcer.COLSTR[11];
+        else if (inp.equals("Green")) return Calcer.COLSTR[12];
+        else if (inp.equals("Purple")) return Calcer.COLSTR[13];
+        else if (inp.equals("Teal")) return Calcer.COLSTR[14];
+        else if (inp.equals("Navy")) return Calcer.COLSTR[15];
         else if (inp.equals("Blend")){
-            c.blendInput();
+            new ColorChoice(1);
             return "Anything else? (\"cmnds\" might help you decide)\n";
         }
         else {

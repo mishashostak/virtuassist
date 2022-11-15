@@ -14,76 +14,109 @@ public class ColorChoice extends JFrame implements ActionListener {
     /**
      * Instance variables for elegant functionality of the class
      */
-    public static final String DIALOG_NAME = "what-dialog";
-    public static final String PANE_NAME = "what-pane";
-    private JButton buttonP;
-    private JButton buttonN;
-    private JPanel fp;
-    private Color choice;
+    private JFrame f1,f2;
+    private JButton buttonP1,buttonP2;
+    private JButton buttonN1,buttonN2;
+    private JPanel fp1,fp2;
+    public Color choice1f;
 
     /**
-     * Non-parameterized constructor which resets all instance variable and calls the initUI method
+     * Parameterized constructor which calls the initUI method and resets all instance variables for reliable recursion
+     * 
+     * @param i The integer value of which choice 
      */
-    public ColorChoice() {
-        buttonP = null;
-        buttonN = null;
-        fp = null;
-        choice = null;
-        initUI();
+    public ColorChoice(int i) {
+        if (i == 1){
+            initUIColCh1();
+        }
+        if (i == 2){
+            initUIColCh2();
+        }
     }
-
-    /**
-     * Accessor to return the Color value choice, the user's chosen Color
-     *
-     * @return Color - The Color value of choice
-     */
-    public Color getColorChoi() {
-        return choice;
-    }
-
     /**
      * Mutator to set a new value for choice to the user's new chosen Color
      *
      * @param newCol The new Color value to set choice to
      */
-    public void setColorChoi(Color newCol) {
-        choice = newCol;
+    
+    /* 
+     public void setColorChoi1(Color newCol) {
+        if(newCol!=null){
+            choice1 = newCol;
+        } else {
+            System.err.println("damn it");
+        }
+    }*/
+
+    /**
+     * This method initializes the JFrame in which the user chooses to
+     * either use JColorChooser or input a String
+     */
+    public void initUIColCh1() {
+        //initialize our JFrame for first choice
+        f1 = new JFrame("First Colour");
+
+        //initialize our JPanel to occupy our JFrame
+        fp1 = new JPanel(new GridLayout());
+
+        f1.setSize(400, 400);
+        f1.setLocationRelativeTo(null);
+        f1.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        //create both buttons
+        buttonN1 = new JButton("Give common colour name");
+        buttonN1.addActionListener(this);
+        buttonN1.setBackground(Color.LIGHT_GRAY);
+
+        buttonP1 = new JButton("Pick a colour");
+        buttonP1.addActionListener(this);
+        buttonP1.setBackground(Color.CYAN);
+
+        //give newly made buttons to panel
+        fp1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        fp1.setBackground(Color.DARK_GRAY);
+        fp1.add(buttonN1);
+        fp1.add(buttonP1);
+
+        //add panel with buttons to the JFrame and make it visible
+        f1.add(fp1);
+        f1.setVisible(true);
     }
 
     /**
-     * This method initializes the JOptionPane in which the user chooses to
+     * This method initializes the JFrame in which the user chooses to
      * either use JColorChooser or input a String
+     * effectively a clone of initUIColCh1() but for the second colour choice
      */
-    private void initUI() {
+    public void initUIColCh2() {
+        //initialize our JFrame for Second choice
+        f2 = new JFrame("Second Colour");
+        
+        //initialize our JPanel to occupy our JFrame
+        fp2 = new JPanel(new GridLayout());
 
-        //initialize our frame
-        JFrame f = new JFrame();
-        f.setSize(400, 400);
-        f.setLocation(350, 200);
-        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        fp = new JPanel();
-        fp.setLayout(new GridLayout());
-        fp.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-        JFrame.setDefaultLookAndFeelDecorated(true);
+        f2.setSize(400, 400);
+        f2.setLocationRelativeTo(null);
+        f2.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //create both buttons
-        buttonP = new JButton("Pick a colour");
-        buttonP.addActionListener(this);
-        buttonP.setBounds(50, 150, 100, 30);
+        buttonN2 = new JButton("Give common colour name");
+        buttonN2.addActionListener(this);
+        buttonN2.setBackground(Color.LIGHT_GRAY);
 
-        buttonN = new JButton("Give common colour name");
-        buttonN.setBounds(50, 150, 200, 30);
-        buttonN.addActionListener(this);
+        buttonP2 = new JButton("Pick a colour");
+        buttonP2.addActionListener(this);
+        buttonP2.setBackground(Color.CYAN);
 
-        //gives newly made buttons to panel
-        fp.add(buttonP);
-        fp.add(buttonN);
+        //give newly made buttons to panel
+        fp2.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        fp2.setBackground(Color.DARK_GRAY);
+        fp2.add(buttonN2);
+        fp2.add(buttonP2);
 
-        //add panel with buttons and pack the frame
-        f.add(fp);
-        f.pack();
-
-        //setVisible is called via invokeLater()
+        //add panel with buttons to the JFrame and make it visible
+        f2.add(fp2);
+        f2.setVisible(true);
     }
 
     /**
@@ -147,11 +180,42 @@ public class ColorChoice extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==buttonP) {
-            setColorChoi(JColorChooser.showDialog(null, "Pick a Colour", Color.BLACK));
+        if(e.getSource()==buttonP1) {
+            f1.dispose();
+            Color choice1=null;
+            do {
+                choice1 = JColorChooser.showDialog(null, "Pick a Colour", Color.BLACK);
+            } while(choice1 == null);
+            choice1f = choice1;
+            new ColorChoice(2);
         }
-        if(e.getSource()==buttonN) {
-            setColorChoi(getColor(JOptionPane.showInputDialog ("What Colour did you have in mind?")));
+        else if(e.getSource()==buttonN1) {
+            f1.dispose();
+            Color choice1=null;
+            do {
+                choice1 = getColor(JOptionPane.showInputDialog ("What Colour did you have in mind?"));
+            } while(choice1 == null);
+            choice1f = choice1;
+            new ColorChoice(2);
+        }
+        else if(e.getSource()==buttonP2) {
+            f2.dispose();
+            Color choice2=null;
+            do {
+                choice2 = JColorChooser.showDialog(null, "Pick a Colour", Color.BLACK);
+            } while(choice2 == null);
+            new Calcer(choice1f,choice2);
+        }
+        else if(e.getSource()==buttonN2) {
+            f2.dispose();
+            Color choice2=null;
+            do {
+                choice2 = getColor(JOptionPane.showInputDialog ("What Colour did you have in mind?"));
+            } while(choice2 == null);
+            new Calcer(choice1f,choice2);
+        }
+        else{
+            System.out.println(e);
         }
     }
 
