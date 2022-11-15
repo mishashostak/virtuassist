@@ -7,7 +7,7 @@ import java.awt.Dimension;
  * 
  * @author Misha Shostak
  * 
- * @version November 14, 2022
+ * @version November 15, 2022
  */
 public class Calcer {
     
@@ -28,20 +28,16 @@ public class Calcer {
      * @param b Color of choice2
      */
     public Calcer(Color a, Color b) {
-        if(b == null){
-            System.err.println("b");
-        } else if(a == null){
-            System.err.println("a");
-        }
-        else {
-            blend(a, b);
-        }
+        blend(a, b);
     }
 
+     
     /**
-     * Non-parameterized constructor
+     * Empty Non-parameterized constructor
      */
+    /*
     public Calcer(){}
+    */
     
     /**
      * This method accepts 2 colours and returns the Color value of the 2 colours blended
@@ -72,7 +68,6 @@ public class Calcer {
     public static void blendOutput(Color b) {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(550, 300));
         frame.getContentPane().setBackground(b);
         frame.pack();

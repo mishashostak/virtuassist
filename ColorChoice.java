@@ -8,30 +8,23 @@ import java.awt.event.*;
  * 
  * @author Misha Shostak
  * 
- * @version November 14, 2022
+ * @version November 15, 2022
  */
 public class ColorChoice extends JFrame implements ActionListener {
     /**
-     * Instance variables for elegant functionality of the class
+     * Instance variables for seemless functionality of the twin initUI methods
      */
     private JFrame f1,f2;
     private JButton buttonP1,buttonP2;
     private JButton buttonN1,buttonN2;
     private JPanel fp1,fp2;
-    public Color choice1f;
+    private Color choice1f;
 
     /**
-     * Parameterized constructor which calls the initUI method and resets all instance variables for reliable recursion
-     * 
-     * @param i The integer value of which choice 
+     * Non-parameterized constructor which calls the initUI1 method
      */
-    public ColorChoice(int i) {
-        if (i == 1){
-            initUIColCh1();
-        }
-        if (i == 2){
-            initUIColCh2();
-        }
+    public ColorChoice() {
+        initUIColCh1();
     }
     /**
      * Mutator to set a new value for choice to the user's new chosen Color
@@ -183,7 +176,7 @@ public class ColorChoice extends JFrame implements ActionListener {
         if(e.getSource()==buttonP1) {
             f1.dispose();
             Color choice1=null;
-            System.err.println("IN BUTTONP1");
+            //System.err.println("IN BUTTONP1");
             do {
                 choice1 = JColorChooser.showDialog(null, "Pick a Colour", Color.BLACK);
             } while(choice1 == null);

@@ -5,7 +5,7 @@ import java.util.*;
  * 
  * @author Misha Shostak
  * 
- * @version November 13, 2022
+ * @version November 15, 2022
  */
 public class JShizzle extends VirtualAgent {
     private String userName;
@@ -191,7 +191,7 @@ public class JShizzle extends VirtualAgent {
         else if (inp.equals("Teal")) return Calcer.COLSTR[14];
         else if (inp.equals("Navy")) return Calcer.COLSTR[15];
         else if (inp.equals("Blend")){
-            new ColorChoice(1);
+            new ColorChoice();
             return "Anything else? (\"cmnds\" might help you decide)\n";
         }
         else {
