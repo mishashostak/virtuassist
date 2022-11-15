@@ -170,7 +170,8 @@ public class JShizzle extends VirtualAgent {
         }
         /* "cmnds" String contains a list of all of the virtual agent's functions/responses */
         else if (inp.contains("Cmnds")){
-            return "\n\"<common colour name>\": returns the rgb values of the input colour\n\"blend\": shows the blend of the 2 colours you input\n" 
+            return "\n\n*\n\"<common colour name>\"\n*\n\"blend\"\n*\n\"your name is <name>\"\n*\n\"bye\" or \"no\"\n*\n\"my name is <name>\"\n*"
+            +"\n\n\"<common colour name>\": returns the rgb values of the input colour\n\"blend\": shows the blend of the 2 colours you input\n" 
             +"\"your name is <name>\": changes JShizzle's name\n\"bye\" or \"no\": makes the virtual assisstant program stop\n"
             +"\"my name is <name>\": changes user's name\n";
         }
