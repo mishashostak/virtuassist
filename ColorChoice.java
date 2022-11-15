@@ -183,11 +183,12 @@ public class ColorChoice extends JFrame implements ActionListener {
         if(e.getSource()==buttonP1) {
             f1.dispose();
             Color choice1=null;
+            System.err.println("IN BUTTONP1");
             do {
                 choice1 = JColorChooser.showDialog(null, "Pick a Colour", Color.BLACK);
             } while(choice1 == null);
             choice1f = choice1;
-            new ColorChoice(2);
+            initUIColCh2();
         }
         else if(e.getSource()==buttonN1) {
             f1.dispose();
@@ -196,7 +197,7 @@ public class ColorChoice extends JFrame implements ActionListener {
                 choice1 = getColor(JOptionPane.showInputDialog ("What Colour did you have in mind?"));
             } while(choice1 == null);
             choice1f = choice1;
-            new ColorChoice(2);
+            initUIColCh2();
         }
         else if(e.getSource()==buttonP2) {
             f2.dispose();

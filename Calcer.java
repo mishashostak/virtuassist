@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.Color;
+import java.awt.Dimension;
 
 /**
  * This class defines the color-wise portion of the virtual agent
@@ -69,12 +70,12 @@ public class Calcer {
      * @param b The Color value of the blended colour
      */
     public static void blendOutput(Color b) {
-        JFrame frame = new JFrame("Blend of 2 colors");
+        JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setBackground(b);
-        frame.setLayout(null);
-        frame.setSize(500, 500);
-        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setPreferredSize(new Dimension(550, 300));
+        frame.getContentPane().setBackground(b);
+        frame.pack();
         frame.setVisible(true);
     }
     
