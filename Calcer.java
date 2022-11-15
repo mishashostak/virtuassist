@@ -69,6 +69,7 @@ public class Calcer {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setPreferredSize(new Dimension(550, 300));
+        frame.setLocationRelativeTo(null);
         frame.getContentPane().setBackground(b);
         frame.pack();
         frame.setVisible(true);
