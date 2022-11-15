@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.Color;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 /**
  * This class defines the color-wise portion of the virtual agent
@@ -8,7 +10,7 @@ import java.awt.Color;
  * 
  * @version November 14, 2022
  */
-public class Calcer{
+public class Calcer implements WindowListener{
     /**
      * Instance variables of 2 Colors for the blend functionality
      */
@@ -39,20 +41,21 @@ public class Calcer{
      * This method defines the user's input colours for blending utilizing the ColorChoice class
      */
     public void blendInput() {
-        ColorChoice cc = new ColorChoice();
+        ColorChoice c0 = new ColorChoice();
         while(true){
-            SwingUtilities.invokeLater(() -> cc.setVisible(true));
-            blendc0 = cc.getColorChoi();
-            if(blendc0 == null){
-                break;
+            while(c0.getColorChoi()==null){
+                SwingUtilities.invokeLater(() -> c0.setVisible(true));
             }
-        }
-        while(true){
-            SwingUtilities.invokeLater(() -> cc.setVisible(true));
-            blendc1 = cc.getColorChoi();
-            if(blendc1 == null){
+            blendc0 = c0.getColorChoi();
             break;
+        }
+        ColorChoice c1 = new ColorChoice();
+        while(true){
+            while(c1.getColorChoi()==null){
+                SwingUtilities.invokeLater(() -> c1.setVisible(true));
             }
+            blendc1 = c1.getColorChoi();
+            break;
         }
         Color blendFinal = blend(blendc0, blendc1);
         blendOutput(blendFinal);
@@ -85,14 +88,15 @@ public class Calcer{
      * @param b The Color value of the blended colour
      */
     public void blendOutput(Color b) {
-        System.out.println("What is Color 1/2 for blending (");
-        
         JFrame frame = new JFrame("Blend of 2 colors");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setBackground(b);
-        JOptionPane.showMessageDialog(null,"","Blended Colour", JOptionPane.INFORMATION_MESSAGE);
+        frame.setForeground(b);
+        frame.setLayout(null);
+        frame.setSize(500, 500);
+        frame.setLocation(400, 400);
         frame.pack();
+        frame.addWindowListener(this);
         frame.setVisible(true);
     }
     
@@ -103,5 +107,47 @@ public class Calcer{
      */
     public String toString() {
         return super.toString();
+    }
+
+    /**
+     * Overriding methods of WindowListener which define behaviour depend on the status of the window
+     * 
+     * @param e WindowEvent object
+     */
+
+    /*overriding windowActivated() method of WindowListener interface*/
+     @Override
+    public void windowActivated(WindowEvent e) {
+    }
+    
+    /**
+     * Overriding windowClosed() method of WindowListener interface which prints the given string when window is closed
+     * 
+     * @param e WindowEvent object
+     */  
+    @Override
+    public void windowClosed(WindowEvent e) {
+
+    }
+
+    /*overriding windowClosing() method of WindowListener interface which prints the given string when we attempt to close window from system menu*/
+    @Override
+    public void windowClosing(WindowEvent e) {
+    }
+    /*overriding windowDeactivated() method of WindowListener interface which prints the given string when window is not active*/
+    @Override
+    public void windowDeactivated(WindowEvent e) {  
+    }
+    /*overriding windowDeiconified() method of WindowListener interface which prints the given string when window is modified from minimized to normal state*/
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+    }
+    /*overriding windowIconified() method of WindowListener interface which prints the given string when window is modified from normal to minimized state*/
+    @Override
+    public void windowIconified(WindowEvent e) {
+    }
+    /*overriding windowOpened() method of WindowListener interface which prints the given string when window is first opened*/
+    @Override
+    public void windowOpened(WindowEvent e) {
     }
 }

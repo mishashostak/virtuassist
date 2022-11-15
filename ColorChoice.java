@@ -16,14 +16,19 @@ public class ColorChoice extends JFrame implements ActionListener {
      */
     public static final String DIALOG_NAME = "what-dialog";
     public static final String PANE_NAME = "what-pane";
-    private JButton buttonP = null;
-    private JButton buttonN = null;
+    private JButton buttonP;
+    private JButton buttonN;
+    private JPanel fp;
     private Color choice;
 
     /**
-     * Non-parameterized constructor which calls the initUI method
+     * Non-parameterized constructor which resets all instance variable and calls the initUI method
      */
     public ColorChoice() {
+        buttonP = null;
+        buttonN = null;
+        fp = null;
+        choice = null;
         initUI();
     }
 
@@ -50,17 +55,35 @@ public class ColorChoice extends JFrame implements ActionListener {
      * either use JColorChooser or input a String
      */
     private void initUI() {
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.setLayout(new BorderLayout());
 
+        //initialize our frame
+        JFrame f = new JFrame();
+        f.setSize(400, 400);
+        f.setLocation(350, 200);
+        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        fp = new JPanel();
+        fp.setLayout(new GridLayout());
+        fp.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        JFrame.setDefaultLookAndFeelDecorated(true);
+
+        //create both buttons
         buttonP = new JButton("Pick a colour");
         buttonP.addActionListener(this);
+        buttonP.setBounds(50, 150, 100, 30);
+
         buttonN = new JButton("Give common colour name");
+        buttonN.setBounds(50, 150, 200, 30);
         buttonN.addActionListener(this);
 
-        this.add(buttonP);
-        this.add(buttonN);
-        this.pack();
+        //gives newly made buttons to panel
+        fp.add(buttonP);
+        fp.add(buttonN);
+
+        //add panel with buttons and pack the frame
+        f.add(fp);
+        f.pack();
+
+        //setVisible is called via invokeLater()
     }
 
     /**

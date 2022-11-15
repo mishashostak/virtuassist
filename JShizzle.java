@@ -86,6 +86,7 @@ public class JShizzle extends VirtualAgent {
                 text = input.nextLine();
                 String response = respondToUserQuery(text);
                 if(response.equals("bye")) {
+                    System.out.println(":[ ok");
                     System.exit(0);
                 } else if (response.equals("yay")) {
                     setConvProceed(true);
@@ -96,6 +97,7 @@ public class JShizzle extends VirtualAgent {
                 text = input.nextLine();
                 String response = respondToUserQuery(text);
                 if(response.equals("bye")) {
+                    System.out.println(":[ ok");
                     System.exit(0);
                 } else if (response.contains("I'm J Shizzle")) {
                     System.out.println(response);
@@ -107,6 +109,7 @@ public class JShizzle extends VirtualAgent {
                 text = input.nextLine();
                 String response = respondToUserQuery(text);
                 if(response.equals("bye")) {
+                    System.out.println(":[ ok");
                     System.exit(0);
                 } else {
                     System.out.print(getName() + ": ");
@@ -155,17 +158,17 @@ public class JShizzle extends VirtualAgent {
             }
         }
         else if (inp.contains("Your Name Is")){
-            setName(inp.substring(inp.lastIndexOf(" ")));
+            setName(inp.substring(inp.lastIndexOf(" ")+1));
             return "Ok, my name is now " + getName();
         }
         else if (inp.contains("My Name Is")){
-            setUserName(inp.substring(inp.lastIndexOf(" ")));
+            setUserName(inp.substring(inp.lastIndexOf(" ")+1));
             return "Ok, your name is now " + getUserName();
         }
         else if (inp.contains("Bye")|inp.contains("No")){
             return "bye";
         }
-        /* "cmnds" string that contains a list of all of the virtual agent's functions/responses */
+        /* "cmnds" String contains a list of all of the virtual agent's functions/responses */
         else if (inp.contains("Cmnds")){
             return "\n\"<common colour name>\": returns the rgb values of the input colour\n\"blend\": shows the blend of the 2 colours you input\n" 
             +"\"your name is <name>\": changes JShizzle's name\n\"bye\" or \"no\": makes the virtual assisstant program stop\n"
